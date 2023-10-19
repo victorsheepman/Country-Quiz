@@ -17,6 +17,19 @@ $font:'Poppins', sans-serif;
     padding: 0;
     box-sizing: border-box;
 }
+.layout{
+    height: 100vh;
+    background: #3F3D56;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.wrapperTitle{
+    width: 464px;
+    height: auto;
+}
+
 .fontTheme{
     color: $blue;
     font-family: $font;

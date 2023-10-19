@@ -1,9 +1,13 @@
+import { CardQuiz } from "./components/CardQuiz/CardQuiz"
 
 function App() {
   return (
-    <>
-      <h1>hola muno</h1>
-    </>
+    <main className="layout">
+      <div className="wrapperTitle">
+        <h1 className="h2_bold">Country quiz</h1>
+      </div>
+      <CardQuiz />
+    </main>
   )
 }
 
