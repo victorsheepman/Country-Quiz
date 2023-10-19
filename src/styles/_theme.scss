@@ -1,0 +1,47 @@
+//Color
+$purple:#575A89;
+$yellow:#F9A826;
+$red:#EA8282;
+$green:#60BF88;
+$blue:#1D355D;
+$white:#F2F2F2;
+
+
+//Font
+$font:'Poppins', sans-serif;
+
+
+//Base
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+.fontTheme{
+    color: $blue;
+    font-family: $font;
+}
+.h1_title{
+    @extend .fontTheme;
+    font-size: 48px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+.h2_bold{
+    @extend .fontTheme;
+    color: #F2F2F2;
+    font-size: 36px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+    text-transform: uppercase;
+}
+.h3_bold{
+   @extend .fontTheme;
+    font-size: 24px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+}
+
