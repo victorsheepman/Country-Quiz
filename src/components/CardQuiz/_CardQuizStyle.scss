@@ -20,13 +20,39 @@
     margin-top: 25px;
     color: rgba(96, 102, 208, 0.80);
     cursor: pointer;
+    figure{
+            width: 20px;
+            height: 20px;
+            flex-shrink: 0;
+            color:white;
+            position: absolute;
+            right: 18px;
+        }
     &--error{
         @extend .optionButton;
+        position: relative;
         background: $red;
+        background-color: $red;
+        color: white;
+        border: 2px solid $red;
+        &:hover{
+            background-color: red;
+            border: 2px solid $red;
+            color:white
+        }
     }
     &--success{
+        position: relative;
         @extend .optionButton;
         background-color: $green;
+        color: white;
+        border: 2px solid $green;
+        &:hover{
+            background-color:$red;
+            border: 2px solid $red;
+            color:white
+        }
+        
     }
     &_title{
         @extend .letter;
