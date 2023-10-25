@@ -25,11 +25,33 @@ const [currentQuestion, setCurrentQuestion] = useState<number>(0)
                 title:'Austria'
             }
         ]
+    },
+    {
+        question:'Which country does this flag belong to?',
+        answer:'B',
+        options:[
+            {
+                letter:'A',
+                title:'Vietnam'
+            },
+            {
+                letter:'B',
+                title:'Finland'
+            },
+            {
+                letter:'C',
+                title:'Sweden'
+            },
+            {
+                letter:'D',
+                title:'Austria'
+            }
+        ]
     }
   ]
   const getAnswer = (item:string)=>{
     const answer = questionsList[currentQuestion].answer === item ? 1 : 2
-    
+
     return answer
   }
 
