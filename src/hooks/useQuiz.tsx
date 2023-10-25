@@ -28,9 +28,12 @@ const [currentQuestion, setCurrentQuestion] = useState<number>(0)
     }
   ]
   const getAnswer = (item:string)=>{
-   const answer = questionsList[currentQuestion].answer === item ? true : false
+    const answer = questionsList[currentQuestion].answer === item ? 1 : 2
+    
     return answer
   }
+
+  
 return {
     questionsList,
     currentQuestion,

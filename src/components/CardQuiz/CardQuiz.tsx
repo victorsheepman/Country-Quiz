@@ -3,28 +3,40 @@ import { useQuiz } from '../../hooks/useQuiz'
 
 
 export const CardQuiz = () => {
- const {questionsList, currentQuestion} = useQuiz()
- const [state, setState] = useState(0)
+  const {questionsList, currentQuestion} = useQuiz()
+  const [isDisabled, setIsDisabled] = useState<boolean>(false)
   return (
-    <div className='cardQuiz'>
-        <h3 className='h3_bold' style={{marginBottom:'32px'}}>Kuala Lumpur is the capital of</h3>
-        {
-          questionsList[currentQuestion].options.map((item, index)=>(
-            <OptionButton state={2} key={index} letter={item.letter} title={item.title} />
-          ))
-        }
-    </div>
-  )
+      <div className='cardQuiz'>
+          <h3 className='h3_bold' style={{marginBottom:'32px'}}>Kuala Lumpur is the capital of</h3>
+          {
+            questionsList[currentQuestion].options.map((item, index)=>(
+              <OptionButton isDisabled={isDisabled} setIsDisabled={setIsDisabled}  key={index} letter={item.letter} title={item.title} />
+            ))
+          }
+      </div>
+    )
 }
 
 
 
-export const OptionButton = ({letter, title, state=0}:{letter:string, title:string, state:number}) => {
-
-  switch (state) {
+interface OptionButtonProps{
+  letter:string, 
+  title:string,
+  isDisabled:boolean,
+  setIsDisabled:React.Dispatch<React.SetStateAction<boolean>>
+}
+export const OptionButton:React.FC<OptionButtonProps> = ({letter, title, isDisabled, setIsDisabled }) => {
+  const {getAnswer} = useQuiz()
+  const [status, setStatus] = useState(0)
+  const handler = (item:string)=>{
+    const newState = getAnswer(item)
+    setStatus(newState)
+    setIsDisabled(true)
+  }
+  switch (status) {
     case 0:
             return (
-      <button className='optionButton'>
+      <button disabled={isDisabled} className='optionButton' onClick={()=>handler(letter)}>
         <span className='letter'>
           {letter}
         </span>
@@ -36,7 +48,7 @@ export const OptionButton = ({letter, title, state=0}:{letter:string, title:stri
       break;
     case 1:
       return(
-        <button className='optionButton--success'>
+        <button disabled={isDisabled} className='optionButton--success'>
         <span className='letter'>
           {letter}
         </span>
@@ -51,7 +63,7 @@ export const OptionButton = ({letter, title, state=0}:{letter:string, title:stri
   
     case 2:
         return(
-          <button className='optionButton--error'>
+          <button disabled={isDisabled} className='optionButton--error'>
           <span className='letter'>
             {letter}
           </span>
