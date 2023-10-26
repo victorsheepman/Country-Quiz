@@ -1,4 +1,5 @@
 import { CardQuiz } from "./components/CardQuiz/CardQuiz"
+import { CardResult } from "./components/CardResult/CardResult"
 
 function App() {
   return (
@@ -6,7 +7,7 @@ function App() {
       <div className="wrapperTitle">
         <h1 className="h2_bold">Country quiz</h1>
       </div>
-      <CardQuiz />
+      <CardResult />
     </main>
   )
 }

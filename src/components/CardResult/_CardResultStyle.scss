@@ -1,0 +1,53 @@
+.cardResult{
+    width: 464px;
+    height: 542px;
+    flex-shrink: 0;
+    border-radius: 24px;
+    background: #FFF;
+    padding-top: 42px;
+    padding-bottom: 33px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    h1{
+        @extend .h1_title;
+        margin-top: 72px;
+    }
+    &_icon{
+        width: 238px;
+        height: 136px;
+        flex-shrink: 0;
+    }
+    &_subTitle{
+        color: #1D355D;
+        font-family: $font;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 400;
+        line-height: normal;
+        strong{
+            color: #6FCF97;
+            font-family: $font;
+            font-size: 36px;
+            font-style: normal;
+            font-weight: 700;
+            line-height: normal;
+        }
+    }
+    &_button{
+        width: 209px;
+        height: 62px;
+        flex-shrink: 0;
+        stroke-width: 2px;
+        color: #1D355D;
+        border: 2px solid #1D355D;
+        font-family: $font;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: normal;
+        background-color: unset;
+        border-radius: 12px;
+        margin-top: 71px;
+    }
+}
