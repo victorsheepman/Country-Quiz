@@ -1,9 +1,11 @@
-import { useState } from "react"
+import React, { useState } from 'react'
+import { CardQuiz } from '../components/CardQuiz/CardQuiz'
+import { Question } from '../interface'
 
-export const useQuiz = () => {
-const [currentQuestion, setCurrentQuestion] = useState<number>(0)
+export const QuizManager = () => {
+    const [currentQuestion, setCurrentQuestion] = useState<number>(0)
 
-  const questionsList = [ 
+  const questionsList:Array<Question> = [ 
     {
         question:'Kuala Lumpur is the capital of',
         answer:'A',
@@ -49,17 +51,23 @@ const [currentQuestion, setCurrentQuestion] = useState<number>(0)
         ]
     }
   ]
+  
   const getAnswer = (item:string)=>{
     const answer = questionsList[currentQuestion].answer === item ? 1 : 2
 
     return answer
   }
-
-  
-return {
-    questionsList,
-    currentQuestion,
-    setCurrentQuestion,
-    getAnswer
-}
+  return (
+    <main className="layout">
+    <div className="wrapperTitle">
+      <h1 className="h2_bold">Country quiz</h1>
+        <CardQuiz 
+            getAnswer={getAnswer} 
+            currentQuestion={currentQuestion} 
+            setCurrentQuestion={setCurrentQuestion} 
+            questionsList={questionsList} 
+        />
+    </div>
+  </main>
+  )
 }

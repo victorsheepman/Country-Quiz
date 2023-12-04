@@ -1,15 +1,14 @@
 import React, { useEffect, useState } from "react"
-import { useQuiz } from "../../hooks/useQuiz"
 
 interface OptionButtonProps{
     letter:string, 
     title:string,
     isDisabled:boolean,
     setIsDisabled:React.Dispatch<React.SetStateAction<boolean>>
-    statusNumber:number
+    statusNumber:number,
+    getAnswer: (item: string) => 1 | 2
   }
-export const OptionButton:React.FC<OptionButtonProps> = ({letter, title, isDisabled, setIsDisabled, statusNumber }) => { 
-    const {getAnswer} = useQuiz()
+export const OptionButton:React.FC<OptionButtonProps> = ({letter, title, isDisabled, setIsDisabled, statusNumber, getAnswer }) => { 
     const [status, setStatus] = useState(statusNumber)
     useEffect(() => {
       setStatus(statusNumber)

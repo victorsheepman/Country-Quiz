@@ -1,10 +1,17 @@
 import React, { useCallback, useEffect, useState }  from 'react'
-import { useQuiz } from '../../hooks/useQuiz'
+
 import { OptionButton } from '../OptionButton/OptionButton'
+import { Question } from '../../interface'
 
+interface CardQuizProps{
+  currentQuestion: number,
+  setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>
+  questionsList:Array<Question>,
+  getAnswer: (item: string) => 1 | 2
 
-export const CardQuiz = () => {
-  const {questionsList, currentQuestion, setCurrentQuestion} = useQuiz()
+}
+
+export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQuestion, questionsList, getAnswer}) => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
  
   const statusCumputed = useCallback(
@@ -30,9 +37,19 @@ export const CardQuiz = () => {
       <div className={isDisabled ? 'cardQuiz--lg': 'cardQuiz'}>
           <h3 className='h3_bold' style={{marginBottom:'32px'}}>{questionsList[currentQuestion].question}</h3>
           {
-            questionsList[currentQuestion].options.map((item, index)=>(
-              <OptionButton statusNumber={statusCumputed(item.letter)} isDisabled={isDisabled} setIsDisabled={setIsDisabled}  key={index} letter={item.letter} title={item.title} />
-            ))
+            questionsList[currentQuestion].options.map(
+              (item, index)=>(
+                <OptionButton  
+                  key={index} 
+                  getAnswer={getAnswer} 
+                  statusNumber={statusCumputed(item.letter)} 
+                  isDisabled={isDisabled} 
+                  setIsDisabled={setIsDisabled}  
+                  letter={item.letter} 
+                  title={item.title} 
+                />
+              )
+            )
           }
           {
             isDisabled ?           
