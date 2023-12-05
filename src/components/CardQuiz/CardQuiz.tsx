@@ -16,7 +16,7 @@ export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQue
  
   const getCurrentStatusButton = useCallback(
     (letter:string) => {
-      if (isDisabled) {
+      if (isDisabled) {     
        return letter === questionsList[currentQuestion].answer ? 1: 0
       }else{
         return 0
@@ -42,7 +42,7 @@ export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQue
                 <OptionButton  
                   key={index} 
                   getAnswer={getAnswer} 
-                  statusNumber={getCurrentStatusButton(item.letter)} 
+                  currentStatus={getCurrentStatusButton(item.letter)} 
                   isDisabled={isDisabled} 
                   setIsDisabled={setIsDisabled}  
                   letter={item.letter} 

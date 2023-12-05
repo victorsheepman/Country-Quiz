@@ -5,15 +5,14 @@ interface OptionButtonProps{
     title:string,
     isDisabled:boolean,
     setIsDisabled:React.Dispatch<React.SetStateAction<boolean>>
-    statusNumber:number,
+    currentStatus:number,
     getAnswer: (item: string) => 1 | 2
   }
-export const OptionButton:React.FC<OptionButtonProps> = ({letter, title, isDisabled, setIsDisabled, statusNumber, getAnswer }) => { 
-    const [status, setStatus] = useState(statusNumber)
+export const OptionButton:React.FC<OptionButtonProps> = ({letter, title, isDisabled, setIsDisabled, currentStatus, getAnswer }) => { 
+    const [status, setStatus] = useState(currentStatus)
     useEffect(() => {
-      setStatus(statusNumber)
-    }, [statusNumber])
-  
+      setStatus(currentStatus) 
+    }, [currentStatus]) 
     const handler = (item:string)=>{
       const newState = getAnswer(item)
       setStatus(newState)
