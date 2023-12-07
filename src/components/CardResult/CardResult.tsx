@@ -1,8 +1,11 @@
-import React, { useState } from 'react'
+import React from 'react'
 import { WinnersIcon } from '../../assets/WinnersIcon'
 
-export const CardResult = () => {
-  const [point, setPoint] = useState(4)
+interface CardResultProps {
+  point:number
+  setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>
+}
+export const CardResult:React.FC<CardResultProps> = ({point, setCurrentQuestion}) => {
   return (
     <div className='cardResult'>
       <figure className='cardResult_icon'>
@@ -12,7 +15,7 @@ export const CardResult = () => {
         Results
       </h1>   
       <p className='cardResult_subTitle'>You got <strong>{point}</strong> correct answers</p>
-      <button className='cardResult_button'>
+      <button className='cardResult_button' onClick={()=>setCurrentQuestion(0)}>
        Try again
       </button>
     </div>

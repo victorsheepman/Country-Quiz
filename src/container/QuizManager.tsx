@@ -5,6 +5,7 @@ import { CardResult } from '../components/CardResult/CardResult'
 
 export const QuizManager = () => {
     const [currentQuestion, setCurrentQuestion] = useState<number>(0)
+    const [count, setCount] = useState(0)
   const questionsList:Array<Question> = [ 
     {
         question:'Kuala Lumpur is the capital of',
@@ -63,12 +64,14 @@ export const QuizManager = () => {
       <h1 className="h2_bold">Country quiz</h1>
       {
         currentQuestion === 4 ? 
-        <CardResult />:
+        <CardResult point={count} setCurrentQuestion={setCurrentQuestion} />:
         <CardQuiz 
             getAnswer={getAnswer} 
             currentQuestion={currentQuestion} 
             setCurrentQuestion={setCurrentQuestion} 
             questionsList={questionsList} 
+            count={count}
+            setCount={setCount}
         />
       }
         

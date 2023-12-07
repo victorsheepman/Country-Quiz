@@ -8,9 +8,11 @@ interface CardQuizProps{
   setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>
   questionsList:Array<Question>,
   getAnswer: (item: string) => 1 | 2,
+  setCount:React.Dispatch<React.SetStateAction<number>>
+  count:number
 }
 
-export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQuestion, questionsList, getAnswer}) => {
+export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQuestion, questionsList, getAnswer, setCount, count}) => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const [isTrue, setIsTrue] = useState<1 | 2>(1)
   const getCurrentStatusButton = useCallback(
@@ -29,10 +31,16 @@ export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQue
   }
 
   const handlerNext = ()=>{
+    const end = 4
+    const newPoint = count + 1
     if (isTrue === 2) {
       setCurrentQuestion(4)
-    }else{
+    }else if ((newPoint)== questionsList.length){ 
+      setCount(newPoint)
+      setCurrentQuestion(end)
+     }else{
       setCurrentQuestion(currentQuestion+1)
+      setCount(newPoint)
     }
   }
 
