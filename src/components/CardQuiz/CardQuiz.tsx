@@ -24,9 +24,9 @@ export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQue
     [currentQuestion, isDisabled]
   )
   const handlerNext = ()=>{
-    const end = 4   
+    const end = (questionsList.length + 1)   
     if (isTrue === 2) {
-      setCurrentQuestion(4)
+      setCurrentQuestion(end)
     }else if ((currentQuestion + 1) == questionsList.length){ 
       setCurrentQuestion(end)
      }else{

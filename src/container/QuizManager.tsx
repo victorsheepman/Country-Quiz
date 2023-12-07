@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { CardQuiz } from '../components/CardQuiz/CardQuiz'
 
 import { CardResult } from '../components/CardResult/CardResult'
+import { questionsList } from '../mock'
 
 
 export const QuizManager = () => {
@@ -12,7 +13,7 @@ export const QuizManager = () => {
     <div className="wrapperTitle">
       <h1 className="h2_bold">Country quiz</h1>
       {
-        currentQuestion === 4 ? 
+        currentQuestion === (questionsList.length + 1) ? 
         <CardResult setCount={setCount} count={count} setCurrentQuestion={setCurrentQuestion} />:
         <CardQuiz 
             currentQuestion={currentQuestion} 
