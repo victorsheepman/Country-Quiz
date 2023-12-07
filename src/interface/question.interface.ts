@@ -9,3 +9,4 @@ export interface Question{
     answer: string;
     options: Array<Option>;
 }
+

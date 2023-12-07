@@ -7,8 +7,9 @@ interface OptionButtonProps{
     setIsDisabled:React.Dispatch<React.SetStateAction<boolean>>
     currentStatus:number,
     getAnswer: (item: string) => 1 | 2
+    setTrue: React.Dispatch<React.SetStateAction<1 | 2>>
   }
-export const OptionButton:React.FC<OptionButtonProps> = ({letter, title, isDisabled, setIsDisabled, currentStatus, getAnswer }) => { 
+export const OptionButton:React.FC<OptionButtonProps> = ({letter, title, isDisabled, setIsDisabled, currentStatus, getAnswer, setTrue }) => { 
     const [status, setStatus] = useState(currentStatus)
     useEffect(() => {
       setStatus(currentStatus) 
@@ -17,6 +18,7 @@ export const OptionButton:React.FC<OptionButtonProps> = ({letter, title, isDisab
       const newState = getAnswer(item)
       setStatus(newState)
       setIsDisabled(true)
+      setTrue(newState)
     }
     switch (status) {
       case 0:

@@ -7,13 +7,12 @@ interface CardQuizProps{
   currentQuestion: number,
   setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>
   questionsList:Array<Question>,
-  getAnswer: (item: string) => 1 | 2
-
+  getAnswer: (item: string) => 1 | 2,
 }
 
 export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQuestion, questionsList, getAnswer}) => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
- 
+  const [isTrue, setIsTrue] = useState<1 | 2>(1)
   const getCurrentStatusButton = useCallback(
     (letter:string) => {
       if (isDisabled) {     
@@ -27,6 +26,14 @@ export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQue
 
   const reset = ()=>{
     setIsDisabled(false);
+  }
+
+  const handlerNext = ()=>{
+    if (isTrue === 2) {
+      setCurrentQuestion(4)
+    }else{
+      setCurrentQuestion(currentQuestion+1)
+    }
   }
 
   useEffect(() => {
@@ -47,6 +54,7 @@ export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQue
                   setIsDisabled={setIsDisabled}  
                   letter={item.letter} 
                   title={item.title} 
+                  setTrue={setIsTrue}
                 />
               )
             )
@@ -54,7 +62,7 @@ export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQue
           {
             isDisabled ?           
             <section className='cardQuiz_wrapper'>
-              <button className='cardQuiz_buttonNext' onClick={()=>setCurrentQuestion(currentQuestion+1)}>
+              <button className='cardQuiz_buttonNext' onClick={handlerNext}>
                 Next
               </button>
             </section>
