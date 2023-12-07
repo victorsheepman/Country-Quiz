@@ -10,3 +10,8 @@ export interface Question{
     options: Array<Option>;
 }
 
+
+export interface PointProtocol {
+    setCount:React.Dispatch<React.SetStateAction<number>>
+    count:number
+}

@@ -1,18 +1,16 @@
 import React, { useCallback, useEffect, useState }  from 'react'
 
 import { OptionButton } from '../OptionButton/OptionButton'
-import { Question } from '../../interface'
+import { questionsList } from '../../mock'
+import { PointProtocol } from '../../interface'
 
-interface CardQuizProps{
+interface CardQuizProps extends PointProtocol{
   currentQuestion: number,
   setCurrentQuestion: React.Dispatch<React.SetStateAction<number>>
-  questionsList:Array<Question>,
-  getAnswer: (item: string) => 1 | 2,
-  setCount:React.Dispatch<React.SetStateAction<number>>
-  count:number
+  
 }
 
-export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQuestion, questionsList, getAnswer, setCount, count}) => {
+export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQuestion, setCount, count}) => {
   const [isDisabled, setIsDisabled] = useState<boolean>(false)
   const [isTrue, setIsTrue] = useState<1 | 2>(1)
   const getCurrentStatusButton = useCallback(
@@ -23,13 +21,8 @@ export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQue
         return 0
       }
     },
-    [currentQuestion, isDisabled, questionsList],
+    [currentQuestion, isDisabled]
   )
-
-  const reset = ()=>{
-    setIsDisabled(false);
-  }
-
   const handlerNext = ()=>{
     const end = 4   
     if (isTrue === 2) {
@@ -42,7 +35,7 @@ export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQue
   }
 
   useEffect(() => {
-    reset()
+    setIsDisabled(false);
   }, [currentQuestion])
   
   return (
@@ -53,7 +46,6 @@ export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQue
               (item, index)=>(
                 <OptionButton  
                   key={index} 
-                  getAnswer={getAnswer} 
                   currentStatus={getCurrentStatusButton(item.letter)} 
                   isDisabled={isDisabled} 
                   setIsDisabled={setIsDisabled}  
@@ -62,6 +54,7 @@ export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQue
                   setTrue={setIsTrue}
                   setCount={setCount}
                   count={count}
+                  currentQuestion={currentQuestion}
                 />
               )
             )

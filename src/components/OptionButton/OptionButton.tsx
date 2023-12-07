@@ -1,21 +1,24 @@
 import React, { useEffect, useState } from "react"
+import { questionsList } from "../../mock"
+import { PointProtocol } from "../../interface"
 
-interface OptionButtonProps{
+interface OptionButtonProps extends PointProtocol{
     letter:string, 
     title:string,
     isDisabled:boolean,
     setIsDisabled:React.Dispatch<React.SetStateAction<boolean>>
     currentStatus:number,
-    getAnswer: (item: string) => 1 | 2
     setTrue: React.Dispatch<React.SetStateAction<1 | 2>>
-    setCount:React.Dispatch<React.SetStateAction<number>>
-    count:number
+    currentQuestion: number,
   }
-export const OptionButton:React.FC<OptionButtonProps> = ({letter, title, isDisabled, setIsDisabled, currentStatus, getAnswer, setTrue, setCount, count }) => { 
+export const OptionButton:React.FC<OptionButtonProps> = ({letter, title, isDisabled, setIsDisabled, currentStatus,currentQuestion, setTrue, setCount, count }) => { 
     const [status, setStatus] = useState(currentStatus)
+    const getAnswer = (item:string)=> questionsList[currentQuestion].answer === item ? 1 : 2
+    
     useEffect(() => {
       setStatus(currentStatus) 
     }, [currentStatus]) 
+
     const handler = (item:string)=>{
       const newState = getAnswer(item)
       if (newState === 1) {
@@ -25,6 +28,8 @@ export const OptionButton:React.FC<OptionButtonProps> = ({letter, title, isDisab
       setIsDisabled(true)
       setTrue(newState)
     }
+   
+    
     switch (status) {
       case 0:
               return (
