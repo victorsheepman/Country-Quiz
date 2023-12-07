@@ -31,16 +31,13 @@ export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQue
   }
 
   const handlerNext = ()=>{
-    const end = 4
-    const newPoint = count + 1
+    const end = 4   
     if (isTrue === 2) {
       setCurrentQuestion(4)
-    }else if ((newPoint)== questionsList.length){ 
-      setCount(newPoint)
+    }else if ((currentQuestion + 1) == questionsList.length){ 
       setCurrentQuestion(end)
      }else{
       setCurrentQuestion(currentQuestion+1)
-      setCount(newPoint)
     }
   }
 
@@ -63,6 +60,8 @@ export const CardQuiz:React.FC<CardQuizProps> = ({currentQuestion, setCurrentQue
                   letter={item.letter} 
                   title={item.title} 
                   setTrue={setIsTrue}
+                  setCount={setCount}
+                  count={count}
                 />
               )
             )

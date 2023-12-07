@@ -8,14 +8,19 @@ interface OptionButtonProps{
     currentStatus:number,
     getAnswer: (item: string) => 1 | 2
     setTrue: React.Dispatch<React.SetStateAction<1 | 2>>
+    setCount:React.Dispatch<React.SetStateAction<number>>
+    count:number
   }
-export const OptionButton:React.FC<OptionButtonProps> = ({letter, title, isDisabled, setIsDisabled, currentStatus, getAnswer, setTrue }) => { 
+export const OptionButton:React.FC<OptionButtonProps> = ({letter, title, isDisabled, setIsDisabled, currentStatus, getAnswer, setTrue, setCount, count }) => { 
     const [status, setStatus] = useState(currentStatus)
     useEffect(() => {
       setStatus(currentStatus) 
     }, [currentStatus]) 
     const handler = (item:string)=>{
       const newState = getAnswer(item)
+      if (newState === 1) {
+        setCount(count + 1)
+      }
       setStatus(newState)
       setIsDisabled(true)
       setTrue(newState)
